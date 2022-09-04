@@ -1,3 +1,43 @@
 
 uvicorn app.main:app
 uvicorn app.main:app --reload
+
+#Create the images
+docker-compose build
+
+#Run the container
+docker-compose up -d
+
+#Update the containers
+docker-compose up -d --build
+
+docker-compose logs web
+
+#Want to access the database via psql?
+docker-compose exec web-db psql -U postgres
+
+postgres=# \c web_dev
+postgres=# \q
+
+
+Ensure the textsummary table was created:
+$ docker-compose exec web-db psql -U postgres
+
+psql (14.1)
+Type "help" for help.
+
+postgres=# \c web_dev
+You are now connected to database "web_dev" as user "postgres".
+
+web_dev=# \dt
+            List of relations
+ Schema |    Name     | Type  |  Owner
+--------+-------------+-------+----------
+ public | textsummary | table | postgres
+(1 row)
+
+web_dev=# \q
+
+
+bring down the containers and volumes
+docker-compose down -v
