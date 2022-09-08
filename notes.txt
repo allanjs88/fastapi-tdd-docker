@@ -41,3 +41,6 @@ web_dev=# \q
 
 bring down the containers and volumes
 docker-compose down -v
+
+--Run the unit testing
+docker-compose exec web python -m pytest
