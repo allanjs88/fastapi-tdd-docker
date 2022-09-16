@@ -1,7 +1,6 @@
 # project/app/main.py
 
 
-import os
 import logging
 
 from fastapi import FastAPI
